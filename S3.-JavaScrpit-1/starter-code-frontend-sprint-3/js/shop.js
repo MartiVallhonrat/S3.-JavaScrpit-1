@@ -75,14 +75,41 @@ var total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    debugger
+    
+    const foundIndexProduct = cartList.findIndex(element => element.id == id)
+
+    if (foundIndexProduct == (-1)) {
+
+        for(let i = 0; i < products.length; i++) {
+
+            if(products[i].id == id) {
+                cart.push(products[i]);
+            };
+        }
+
+        const foundIndexCart = cart.findIndex(element => element.id == id)
+
+        cart[foundIndexCart].quantity = 1;
+
+    } else {
+
+        const foundIndexCart = cart.findIndex(element => element.id == id)
+
+        cart[foundIndexCart].quantity = cart[foundIndexCart].quantity + 1;
+    }
+
+    
     for(let i = 0; i < products.length; i++) {
 
         if(products[i].id == id) {
             cartList.push(products[i]);
         };
 
-        console.log(cartList)
     }
+    
+    console.log(cartList)
+    console.log(cart)
 }
 
 // Exercise 2
@@ -96,7 +123,7 @@ function cleanCart() {
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
     let totalPrice = 0
-    debugger
+    
     for(let i = 0; i < cartList.length; i++) {
 
         totalPrice = totalPrice + (cartList[i].price)
@@ -111,6 +138,8 @@ function calculateTotal() {
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+
 }
 
 // Exercise 5
