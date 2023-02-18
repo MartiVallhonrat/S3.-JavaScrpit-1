@@ -138,27 +138,51 @@ function generateCart() {
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+    debugger
+
+    for(let i = 0; i < cart.length; i++) {
+
+        cart[i].subtotalWithDiscount = (cart[i].price * cart[i].quantity)
+    }
     
     const foundIndexOil = cart.findIndex(element => element.name == "cooking oil")
     const foundIndexCake = cart.findIndex(element => element.name == "Instant cupcake mixture")
 
-    if(cart[foundIndexOil].quantity >= 3) {
+    if (foundIndexOil !== -1) {
 
-        cart[foundIndexOil].subtotalWithDiscount = (10 * cart[foundIndexOil].quantity)
+        if(cart[foundIndexOil].quantity >= 3) {
+
+            cart[foundIndexOil].subtotalWithDiscount = (10 * cart[foundIndexOil].quantity)
+        }
     }
 
-    if(cart[foundIndexCake].quantity >= 10) {
+    if (foundIndexCake !== -1) {
 
-        cart[foundIndexCake].subtotalWithDiscount = ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) - ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) / 3))
+        if(cart[foundIndexCake].quantity >= 10) {
+
+            cart[foundIndexCake].subtotalWithDiscount = ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) - ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) / 3))
+        }
     }
-
     console.log(cart)
 }
 
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
-    
+    debugger
+    let html = ""
+
+    for(let i = 0; i < cart.length; i++) {
+
+        html += "<tr>";
+        html += "<th scope='row'>" + cart[i].name + "</th>";
+        html += "<td>" + "$" + cart[i].price + "</td>";
+        html += "<td>" + cart[i].quantity + "</td>";
+        html += "<td>" + "$" + cart[i].subtotalWithDiscount + "</td>";
+        html += "</tr>";
+    }
+
+    document.getElementById("cart_list").innerHTML = html
 }
 
 
@@ -169,15 +193,58 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    const foundIndexCart = cart.findIndex(element => element.id == id)
+
+    if (foundIndexCart == (-1)) {
+
+        const foundIndexProducts = products.findIndex(element => element.id == id)
+
+        cart.push(products[foundIndexProducts])
+
+        const foundIndexCart2 = cart.findIndex(element => element.id == id)
+
+        cart[foundIndexCart2].quantity = 1;
+
+    }
+
+    if(foundIndexCart !== (-1)) {
+
+        cart[foundIndexCart].quantity = cart[foundIndexCart].quantity + 1;
+    }
+
+    console.log(cart)
 }
 
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    debugger
+    const foundIndexCart = cart.findIndex(element => element.id == id);
+
+    if (foundIndexCart !== -1) {
+
+        if (cart[foundIndexCart].quantity == 1) {
+
+            cart.splice(foundIndexCart, foundIndexCart);
+        }
+
+        if (cart[foundIndexCart].quantity > 1) {
+
+            cart[foundIndexCart].quantity = (cart[foundIndexCart].quantity - 1);
+        }
+    }
+    
+    console.log(cart);
 }
 
 function open_modal(){
 	console.log("Open Modal");
 	printCart();
+}
+
+
+
+function refreshNumber(){
+    document.getElementById("count_product").innerHTML = cart.length;
 }
