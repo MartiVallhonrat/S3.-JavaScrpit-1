@@ -76,30 +76,7 @@ function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
     debugger
-    
-    const foundIndexProduct = cartList.findIndex(element => element.id == id)
 
-    if (foundIndexProduct == (-1)) {
-
-        for(let i = 0; i < products.length; i++) {
-
-            if(products[i].id == id) {
-                cart.push(products[i]);
-            };
-        }
-
-        const foundIndexCart = cart.findIndex(element => element.id == id)
-
-        cart[foundIndexCart].quantity = 1;
-
-    } else {
-
-        const foundIndexCart = cart.findIndex(element => element.id == id)
-
-        cart[foundIndexCart].quantity = cart[foundIndexCart].quantity + 1;
-    }
-
-    
     for(let i = 0; i < products.length; i++) {
 
         if(products[i].id == id) {
@@ -109,7 +86,6 @@ function buy(id) {
     }
     
     console.log(cartList)
-    console.log(cart)
 }
 
 // Exercise 2
@@ -122,16 +98,14 @@ function cleanCart() {
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
-    let totalPrice = 0
+    let total = 0
     
     for(let i = 0; i < cartList.length; i++) {
 
-        totalPrice = totalPrice + (cartList[i].price)
+        total = total + (cartList[i].price)
     }
 
-    console.log(totalPrice)
-
-    return totalPrice
+    console.log(total)
 }
 
 // Exercise 4
@@ -139,17 +113,52 @@ function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 
+    for(let i = 0; i < cartList.length; i++) {
 
+        const id = cartList[i].id ;
+        const foundIndexCart = cart.findIndex(element => element.id == id)
+
+        if (foundIndexCart == (-1)) {
+
+            cart.push(cartList[i])
+
+            const foundIndexCart2 = cart.findIndex(element => element.id == id)
+
+            cart[foundIndexCart2].quantity = 1;
+
+        } else {
+
+            cart[foundIndexCart].quantity = cart[foundIndexCart].quantity + 1;
+        }
+    }
+
+    console.log(cart)
 }
 
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+    
+    const foundIndexOil = cart.findIndex(element => element.name == "cooking oil")
+    const foundIndexCake = cart.findIndex(element => element.name == "Instant cupcake mixture")
+
+    if(cart[foundIndexOil].quantity >= 3) {
+
+        cart[foundIndexOil].subtotalWithDiscount = (10 * cart[foundIndexOil].quantity)
+    }
+
+    if(cart[foundIndexCake].quantity >= 10) {
+
+        cart[foundIndexCake].subtotalWithDiscount = ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) - ((cart[foundIndexCake].price * cart[foundIndexCake].quantity) / 3))
+    }
+
+    console.log(cart)
 }
 
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    
 }
 
 
