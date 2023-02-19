@@ -212,6 +212,9 @@ function addToCart(id) {
         cart[foundIndexCart].quantity = cart[foundIndexCart].quantity + 1;
     }
 
+    applyPromotionsCart()
+    refreshNumber()
+    
     console.log(cart)
 }
 
@@ -235,6 +238,10 @@ function removeFromCart(id) {
         }
     }
     
+    
+    applyPromotionsCart()
+    refreshNumber()
+
     console.log(cart);
 }
 
