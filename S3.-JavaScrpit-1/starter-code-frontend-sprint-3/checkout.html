@@ -15,14 +15,15 @@
 	<!-- Bootstrap icons-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="../../css/main.min.css">
 	<!-- Core theme CSS (includes Bootstrap)-->
 </head>
 
-<body>
+<body class=" bg-image" style="background-image: url(images/Background-Wallpaper.jpg);">
 	<!-- Navigation-->
 	<nav class="navbar py-3 py-lg-0 navbar-light bg-light navbar-expand-lg" id="navbar-example2">
 		<div class="container d-flex">
-			<a class="navbar-brand" href="#!">ShopNow</a>
+			<img class="navbar-brand" href="#!" src="images/ShopNow-logo.jpg" alt="..." style="width: 150px;"/>
 			<div class="d-flex flex-row order-lg-last align-items-center">
 
 				<button type="button" class="navbar-toggler order-last collapsed" data-bs-toggle="collapse"
@@ -31,10 +32,9 @@
 				</button>
 				<ul class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
 					<li class="dropdown search-dropdown nav-item py-lg-3">
-						<a href="javascript:void(0)" class="btn btn-outline-dark flex-center" type="button" data-bs-toggle="modal"
+						<a href="javascript:void(0)" class="btn btn-outline-primary flex-center" type="button" data-bs-toggle="modal"
 							data-bs-target="#cartModal" onclick="open_modal()" data-bs-auto-close="outside">
-							<i class="fas fa-shopping-cart me-1"></i> Cart <span class="badge bg-dark text-white ms-1 rounded-pill"
-								id="count_product">0</span>
+							<i class="fas fa-shopping-cart me-1 text-primary"> Cart </i><span class="badge bg-primary text-white ms-1 rounded-pill" id="count_product">0</span>
 						</a>
 					</li>
 				</ul>
@@ -44,45 +44,45 @@
 
 				<ul class="navbar-nav me-auto mb-4 mb-lg-0 ms-lg-5">
 					<li class="nav-item">
-						<a class="nav-link" href="#grocery"><i class="fas fa-shopping-basket"></i> Grocery</a>
+						<a class="nav-link text-primary" href="#grocery"><i class="fas fa-shopping-basket"></i> Grocery</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#beauty"><i class="fas fa-heart"></i> Beauty</a>
+						<a class="nav-link text-primary" href="#beauty"><i class="fas fa-heart"></i> Beauty</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#clothes"><i class="fas fa-tshirt"></i> Clothes</a>
+						<a class="nav-link text-primary" href="#clothes"><i class="fas fa-tshirt"></i> Clothes</a>
 					</li>
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div class="container">
-		<h1 class="text-center head m-4">Checkout Page</h1>
+	<div class="container bg-white py-2 mt-4">
+		<h1 class="text-center head m-4 text-primary">Checkout Page</h1>
 
 		<div class="row mr-0">
-			<div class="col-sm-6">
+			<div class="col-sm-6 text-primary">
 				<h3 class="my-3 bord shadow text-center"><i class="fas fa-dollar-sign p-2"></i>Cash on Delivery</h3>
 			</div>
-			<div class="col-sm-6 ">
+			<div class="col-sm-6 text-primary">
 				<h3 class="my-3 bord shadow text-center"><i class="fas fa-arrows-alt-h p-2"></i>100% Return</h3>
 			</div>
 		</div>
 
 		<div class="row mr-0">
-			<div class="col-sm-6">
+			<div class="col-sm-6 text-primary">
 				<h3 class="my-3 bord shadow text-center"><i class="far fa-thumbs-up p-2"></i>Quality Assured</h3>
 			</div>
-			<div class="col-sm-6 ">
+			<div class="col-sm-6 text-primary">
 				<h3 class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
 			</div>
 		</div>
-		<form class="form was-validated">
+		<form class="form was-validated bg-white">
 			<div class="row bord p-5 shadow m-5">
 				<div class="col-sm-6">
 					<div class="mt-3">
 						<label for="fName" class="form-label">First Name:</label>
-						<input id="fName" class="form-control ml-3" type="text" placeholder="First Name" required minlength="3"/>
+						<input id="fName" class="form-control ml-3" type="text" placeholder="First Name" required minlength="3" onkeydown="return /[a-z]/i.test(event.key)"/>
 						<div id="errorName" class="invalid-feedback">This field is required and must have, at least, 3 characters
 						</div>
 					</div>
@@ -102,19 +102,19 @@
 				<div class="col-sm-6">
 					<div class="mt-3">
 						<label for="fLastN" class="form-label">Last Name:</label>
-						<input id="fLastN" class="form-control" type="text" placeholder="Last Name" minlength="3" required/>
+						<input id="fLastN" class="form-control" type="text" placeholder="Last Name" minlength="3" onkeydown="return /[a-z]/i.test(event.key)" required/>
 						<div id="errorLastN" class="invalid-feedback">This field is required and must have, at least, 3 characters
 						</div>
 					</div>
 					<div class="mt-3">
 						<label for="fPassword" class="form-label">Password:</label>
 						<input id="fPassword" class="form-control" title="(4-8 characters)" type="password" minlength="4"
-							maxlength="8" placeholder="Password" required/>
+							maxlength="8" placeholder="Password" pattern="(?=.*?[0-9])(?=.*?[A-Za-z]).+" required/>
 						<div id="errorPassword" class="invalid-feedback">Enter a correct password</div>
 					</div>
 					<div class="mt-3">
 						<label for="fPhone" class="form-label">Phone Number:</label>
-						<input id="fPhone" class="form-control" type="number" placeholder="Phone No." minlength="9" maxlength="9" required/>
+						<input id="fPhone" class="form-control" type="number" placeholder="Phone No." min="999999999" onKeyPress="if(this.value.length>9) return false; " required/>
 						<div id="errorPhone" class="invalid-feedback">Invalid phone number!! Must be 9 digits with no letters</div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 
 
 	<!-- Footer-->
-	<footer class="py-3 bg-dark">
+	<footer class="py-3 bg-primary mt-5">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p>
 		</div>

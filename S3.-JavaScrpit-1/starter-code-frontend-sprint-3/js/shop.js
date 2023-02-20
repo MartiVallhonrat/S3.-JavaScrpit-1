@@ -91,18 +91,22 @@ function buy(id) {
 // Exercise 2
 function cleanCart() {
     cartList = []
+    cart = []
 
     console.log(cartList)
+    console.log(cart)
+
+    refreshNumber()
+    printCart()
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
-    let total = 0
     
-    for(let i = 0; i < cartList.length; i++) {
+    for(let i = 0; i < cart.length; i++) {
 
-        total = total + (cartList[i].price)
+        total = total + (cart[i].subtotalWithDiscount)
     }
 
     console.log(total)
@@ -183,6 +187,8 @@ function printCart() {
     }
 
     document.getElementById("cart_list").innerHTML = html
+
+    printTotal()
 }
 
 
@@ -254,4 +260,9 @@ function open_modal(){
 
 function refreshNumber(){
     document.getElementById("count_product").innerHTML = cart.length;
+}
+
+function printTotal() {
+    calculateTotal()
+    document.getElementById("total_price").innerHTML = total
 }

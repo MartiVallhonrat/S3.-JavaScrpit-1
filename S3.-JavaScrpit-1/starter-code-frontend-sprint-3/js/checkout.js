@@ -19,34 +19,43 @@ function validate() {
 	var errorPhone = document.getElementById("errorPhone"); 
 	
 	// Validate fields entered by the user: name, phone, password, and email
-	if(fName.value == ""){
+	debugger
+
+	const isValidPassword = fPassword.checkValidity()
+	const isValidPhone = fPhone.checkValidity()
+	const isValidLastN = fLastN.checkValidity()
+	const isValidEmail = fEmail.checkValidity()
+	const isValidName = fName.checkValidity()
+	const isValidAdress = fAddress.checkValidity()
+
+
+	if(fName.value == "" || isValidName == false){
 		error++;
-		errorName.innerHTML = "Aquest camp és obligatori"
 	}
 
-	if(fEmail.value == ""){
+	if(fEmail.value == "" || isValidEmail == false){
 		error++;
-		errorEmail.innerHTML = "Aquest camp és obligatori"
+
 	}
 	 
-	if(fAddress.value == ""){
+	if(fAddress.value == "" || isValidAdress == false){
 		error++;
-		errorAddress.innerHTML = "Aquest camp és obligatori"
+		
 	}
 	
-	if(fLastN.value == ""){
+	if(fLastN.value == "" || isValidLastN == false){
 		error++;
-		errorLastN.innerHTML = "Aquest camp és obligatori"
-	}
-	
-	if(fPassword.value == ""){
-		error++;
-		errorPassword.innerHTML = "Aquest camp és obligatori"
+
 	}
 
-	if(fPhone.value == ""){
+	if(fPassword.value == "" || isValidPassword == false){
 		error++;
-		errorPhone.innerHTML = "Aquest camp és obligatori"
+		
+	}
+
+	if(fPhone.value == "" || isValidPhone == false){
+		error++;
+	
 	}
 
 	if(error>0){

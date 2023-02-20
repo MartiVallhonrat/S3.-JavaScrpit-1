@@ -1,0 +1,8 @@
+$primary:#d63384;
+$secondary: rgb(242, 212, 176);
+
+body {
+    background-color: $primary;
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap"
