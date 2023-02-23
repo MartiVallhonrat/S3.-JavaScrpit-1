@@ -69,8 +69,6 @@ var cartList = [];
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
 
-var total = 0;
-
 // Exercise 1
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
@@ -90,8 +88,10 @@ function buy(id) {
 
 // Exercise 2
 function cleanCart() {
+    debugger
     cartList = []
     cart = []
+    total = 0
 
     console.log(cartList)
     console.log(cart)
@@ -102,6 +102,7 @@ function cleanCart() {
 
 // Exercise 3
 function calculateTotal() {
+    debugger
     // Calculate total price of the cart using the "cartList" array
     
     for(let i = 0; i < cart.length; i++) {
@@ -110,6 +111,7 @@ function calculateTotal() {
     }
 
     console.log(total)
+    return total;
 }
 
 // Exercise 4
@@ -183,6 +185,7 @@ function printCart() {
         html += "<td>" + "$" + cart[i].price + "</td>";
         html += "<td>" + cart[i].quantity + "</td>";
         html += "<td>" + "$" + cart[i].subtotalWithDiscount + "</td>";
+        html += '<td></span><button type="button" onclick="removeFromCart(' + cart[i].id + ')" class="btn btn-outline-primary bg-primary text-white"> - </button></td>';
         html += "</tr>";
     }
 
@@ -235,7 +238,7 @@ function removeFromCart(id) {
 
         if (cart[foundIndexCart].quantity == 1) {
 
-            cart.splice(foundIndexCart, foundIndexCart);
+            cart.splice(foundIndexCart, foundIndexCart + 1);
         }
 
         if (cart[foundIndexCart].quantity > 1) {
@@ -246,7 +249,10 @@ function removeFromCart(id) {
     
     
     applyPromotionsCart()
-    refreshNumber()
+    refreshNumber() 
+    printTotal();
+    printCart()
+    
 
     console.log(cart);
 }
@@ -259,10 +265,18 @@ function open_modal(){
 
 
 function refreshNumber(){
-    document.getElementById("count_product").innerHTML = cart.length;
+    
+    let newNumber = 0;
+
+    for(let i = 0; i < cart.length; i++) {
+        newNumber = newNumber + cart[i].quantity;
+    }
+
+    document.getElementById("count_product").innerHTML = newNumber;
 }
 
 function printTotal() {
-    calculateTotal()
-    document.getElementById("total_price").innerHTML = total
+    debugger
+    total = 0
+    document.getElementById("total_price").innerHTML = calculateTotal()
 }
